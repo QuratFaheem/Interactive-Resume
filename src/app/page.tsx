@@ -17,7 +17,7 @@ export default function Home() {
   const [submittedData, setSubmittedData] = useState(null);
 
   // Handle form input changes
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -26,7 +26,7 @@ export default function Home() {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmittedData(formData);
   };
@@ -100,7 +100,7 @@ export default function Home() {
             style={{ padding: '5px', width: '100%', height: '200px' }}
           />
         </div>
-        
+
         <div>
           <label>Skills:</label><br />
           <input
