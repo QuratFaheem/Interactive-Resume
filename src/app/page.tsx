@@ -1,101 +1,140 @@
-import Image from "next/image";
+'use client';
+import { useState } from 'react';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // State to hold form data
+  const [formData, setFormData] = useState({
+    name: '',
+    FatherName: '',
+    Cell: '',
+    email: '',
+    Education: '',
+    Experience: '',
+    skills:'',
+  });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const [submittedData, setSubmittedData] = useState(null);
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmittedData(formData);
+  };
+
+  return (
+    <div className="resume-container">
+     <center><p>Interactive Resume Builder</p></center> 
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: '10px' }}>
+          <label>Name:</label><br />
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            style={{ padding: '5px', width: '100%' }}
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+
+        <div style={{ marginBottom: '10px' }}>
+          <label>Address:</label><br />
+          <input
+            type="text"
+            name="Address"
+            value={formData.Address}
+            onChange={handleChange}
+            style={{ padding: '5px', width: '100%' }}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+        </div>
+
+        <div style={{ marginBottom: '10px' }}>
+          <label>Cell Number:</label><br />
+          <input
+            type="text"
+            name="Cell"
+            value={formData.Cell}
+            onChange={handleChange}
+            style={{ padding: '5px', width: '100%' }}
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+        </div>
+
+        <div style={{ marginBottom: '10px' }}>
+          <label>Email:</label><br />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            style={{ padding: '5px', width: '100%' }}
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+
+        <div style={{ marginBottom: '10px' }}>
+          <label>Education:</label><br />
+          <input
+            type="text"
+            name="Education"
+            value={formData.Education}
+            onChange={handleChange}
+            style={{ padding: '5px', width: '100%', height:'200px' }}
+          />
+        </div>
+        
+        <div style={{ marginBottom: '10px' }}>
+          <label>Experience:</label><br />
+          <input
+            type="text"
+            name="Experience"
+            value={formData.Experience}
+            onChange={handleChange}
+            style={{ padding: '5px', width: '100%', height:'200px' }}
+          />
+        </div>
+        <div>
+        <label>Skills:</label><br />
+          <input
+            type="text"
+            name="skills"
+            value={formData.skills}
+            onChange={handleChange}
+            style={{ padding: '5px', width: '100%' }}
+          />
+        </div>
+        
+  
+
+        <button type="submit" style={{ padding: '10px', cursor: 'pointer' }}>
+          Submit
+        </button>
+      </form>
+
+      {submittedData && (
+        <div style={{ marginTop: '20px' }}>
+          <section className="headpic">
+                 
+            <h1 style={{ fontSize: 'larger', fontFamily: "'Courier New', Courier, monospace", fontWeight: 900 }}>{submittedData.name}</h1>
+            <h1 style={{ fontFamily: "'Lucida Sans'", fontWeight: 300 }}>Software Engineer</h1>
+            {submittedData.Address}   
+           <br></br> Cell: {submittedData.Cell}.  email:  {submittedData.email}
+          </section>
+          
+          <hr class="custom-hr" id="section-divider">
+        </hr>
+          <p>Education:</p><h1> {submittedData.Education}</h1>
+          <p>Experience:</p><h1> {submittedData.Experience}</h1>
+          <p>Skills:</p><h1> {submittedData.skills}</h1>
+
+        </div>
+      )}
     </div>
   );
 }
