@@ -6,11 +6,12 @@ export default function Home() {
   const [formData, setFormData] = useState({
     name: '',
     FatherName: '',
+    Address: '', // Added Address field here to avoid errors
     Cell: '',
     email: '',
     Education: '',
     Experience: '',
-    skills:'',
+    skills: '',
   });
 
   const [submittedData, setSubmittedData] = useState(null);
@@ -32,7 +33,7 @@ export default function Home() {
 
   return (
     <div className="resume-container">
-     <center><p>Interactive Resume Builder</p></center> 
+      <center><p>Interactive Resume Builder</p></center>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '10px' }}>
           <label>Name:</label><br />
@@ -85,10 +86,10 @@ export default function Home() {
             name="Education"
             value={formData.Education}
             onChange={handleChange}
-            style={{ padding: '5px', width: '100%', height:'200px' }}
+            style={{ padding: '5px', width: '100%', height: '200px' }}
           />
         </div>
-        
+
         <div style={{ marginBottom: '10px' }}>
           <label>Experience:</label><br />
           <input
@@ -96,11 +97,12 @@ export default function Home() {
             name="Experience"
             value={formData.Experience}
             onChange={handleChange}
-            style={{ padding: '5px', width: '100%', height:'200px' }}
+            style={{ padding: '5px', width: '100%', height: '200px' }}
           />
         </div>
+        
         <div>
-        <label>Skills:</label><br />
+          <label>Skills:</label><br />
           <input
             type="text"
             name="skills"
@@ -109,8 +111,6 @@ export default function Home() {
             style={{ padding: '5px', width: '100%' }}
           />
         </div>
-        
-  
 
         <button type="submit" style={{ padding: '10px', cursor: 'pointer' }}>
           Submit
@@ -120,19 +120,18 @@ export default function Home() {
       {submittedData && (
         <div style={{ marginTop: '20px' }}>
           <section className="headpic">
-                 
-            <h1 style={{ fontSize: 'larger', fontFamily: "'Courier New', Courier, monospace", fontWeight: 900 }}>{submittedData.name}</h1>
+            <h1 style={{ fontSize: 'larger', fontFamily: "'Courier New', Courier, monospace", fontWeight: 900 }}>
+              {submittedData.name}
+            </h1>
             <h1 style={{ fontFamily: "'Lucida Sans'", fontWeight: 300 }}>Software Engineer</h1>
-            {submittedData.Address}   
-           <br></br> Cell: {submittedData.Cell}.  email:  {submittedData.email}
+            {submittedData.Address}<br /> Cell: {submittedData.Cell}, Email: {submittedData.email}
           </section>
-          
-          <hr class="custom-hr" id="section-divider">
-        </hr>
-          <p>Education:</p><h1> {submittedData.Education}</h1>
-          <p>Experience:</p><h1> {submittedData.Experience}</h1>
-          <p>Skills:</p><h1> {submittedData.skills}</h1>
 
+          <hr className="custom-hr" id="section-divider" />
+
+          <p>Education:</p><h1>{submittedData.Education}</h1>
+          <p>Experience:</p><h1>{submittedData.Experience}</h1>
+          <p>Skills:</p><h1>{submittedData.skills}</h1>
         </div>
       )}
     </div>
