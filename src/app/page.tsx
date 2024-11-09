@@ -1,12 +1,24 @@
 'use client';
 import { useState } from 'react';
 
+// Define the type for formData and submittedData to maintain consistency
+interface FormData {
+  name: string;
+  FatherName: string;
+  Address: string;
+  Cell: string;
+  email: string;
+  Education: string;
+  Experience: string;
+  skills: string;
+}
+
 export default function Home() {
   // State to hold form data
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     FatherName: '',
-    Address: '', // Added Address field here to avoid errors
+    Address: '',
     Cell: '',
     email: '',
     Education: '',
@@ -14,7 +26,8 @@ export default function Home() {
     skills: '',
   });
 
-  const [submittedData, setSubmittedData] = useState(null);
+  // State for submitted data, initially null or of type FormData
+  const [submittedData, setSubmittedData] = useState<FormData | null>(null);
 
   // Handle form input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
